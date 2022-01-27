@@ -1,8 +1,15 @@
-// import the model you need to access
+import Article from "../models/article"
+
 export class ArticleServices {
-    createArticle(data) { }
-    getAllArticles() { }
-    getArticle(id) { }
-    updateArticle(id) { }
-    deleteArticle(id) { }
+    static async createArticle(data) {
+        return await data.save()
+    }
+    static async getAllArticles() {
+        const articles = await Article.find()
+        return articles
+    }
+    static async getArticle(id) {
+        const article = await Article.findOne({ _id: id })
+        return article
+    }
 }

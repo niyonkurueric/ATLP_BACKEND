@@ -3,18 +3,21 @@ import mongoose from "mongoose"
 import routes from "./routes"
 import 'dotenv/config'
 
+// connect(process.env.EVELOPMENT_DB, { userNewUrlParser: true })
+//     .then(() => console.log('db connected'))
+//     .catch(err => console.error(err));
 const app = express()
 
 const port = process.env.PORT || 3000
 const mode = process.env.NODE_ENV || 'development'
-const server = async () => {
+const server = async() => {
     try {
         if (mode === "development") {
             await mongoose.connect(process.env.DEVELOPMENT_DB, { useNewUrlParser: true })
         } else if (mode === "test") {
-            await mongoose.connect(process.env.TEST_DB, { useNewUrlParser: true })
+            await mongoose.connect("process.env.TEST_DB", { useNewUrlParser: true })
         } else if (mode === "production") {
-            await mongoose.connect(process.env.PRODUCTION_DB, { useNewUrlParser: true })
+            await mongoose.connect("process.env.PRODUCTION_DB", { useNewUrlParser: true })
         }
         app.use(express.json())
         app.use("/api/v1/", routes)
@@ -26,4 +29,3 @@ const server = async () => {
     }
 }
 server()
-
