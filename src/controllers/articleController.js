@@ -12,8 +12,6 @@ export class ArticleController {
             })
             const article = await ArticleServices.createArticle(data)
             res.send(article)
-            res.send("create well")
-
         } catch (error) {
             res.status(404)
             res.send({ error: error.message })
