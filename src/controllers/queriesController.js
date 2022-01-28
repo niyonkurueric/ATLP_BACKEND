@@ -44,7 +44,7 @@ export class QueryController {
         try {
             const info = {}
             if (req.body.name) {
-                info['title'] = req.body.name;
+                info['name'] = req.body.name;
             }
             if (req.body.content) {
                 info['content'] = req.body.content;

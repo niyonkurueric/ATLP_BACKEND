@@ -17,7 +17,7 @@ export class queryService {
     static async updateQueries(id, info) {
         const queriesup = await query.findOne({ _id: id })
         if (info.name) {
-            queriesup.title = info.name
+            queriesup.name = info.name
         }
         if (info.content) {
             queriesup.content = info.content
