@@ -12,6 +12,7 @@ export class ArticleController {
             })
             const article = await ArticleServices.createArticle(data)
             res.send(article)
+            res.send("create well")
 
         } catch (error) {
             res.status(404)
@@ -36,4 +37,44 @@ export class ArticleController {
             res.send({ error: error.message })
         }
     }
+    async updateArticle(req, res, next) {
+        try {
+            const info = {}
+            if (req.body.title) {
+                info['title'] = req.body.title;
+            }
+            if (req.body.content) {
+                info['content'] = req.body.content;
+
+            }
+            if (req.body.photo) {
+                info['photo'] = req.body.photo;
+            }
+            if (req.body.likes) {
+                info['likes'] = req.body.likes
+            }
+            const article = await ArticleServices.updateArticle(req.params.id, info);
+            res.send(article);
+        } catch (error) {
+            res.status(404)
+            res.send({ error: error.message })
+        }
+    }
+
+    async deleteArticle(req, res, next) {
+        try {
+            await ArticleServices.deleteArticle(req.params.id)
+            res.send("delete well")
+        } catch (error) {
+            res.status(404);
+            res.send({ error: error.message })
+        }
+    }
+
+
+
+
+
+
+
 }

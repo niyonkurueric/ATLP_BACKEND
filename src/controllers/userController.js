@@ -13,4 +13,14 @@ export class UserController {
         UserServices.createUser(user)
         res.send(user)
     }
+
+    async getUser(req, res, next) {
+        try {
+            const articles = await UserServices.getUser()
+            res.send(articles)
+        } catch (error) {
+            res.status(404)
+            res.send({ error: error.message })
+        }
+    }
 }

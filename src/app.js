@@ -2,10 +2,6 @@ import express from "express"
 import mongoose from "mongoose"
 import routes from "./routes"
 import 'dotenv/config'
-
-// connect(process.env.EVELOPMENT_DB, { userNewUrlParser: true })
-//     .then(() => console.log('db connected'))
-//     .catch(err => console.error(err));
 const app = express()
 
 const port = process.env.PORT || 3000
