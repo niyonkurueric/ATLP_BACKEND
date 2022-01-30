@@ -19,8 +19,7 @@ export class UserController {
             const articles = await UserServices.getUser()
             res.send(articles)
         } catch (error) {
-            res.status(404)
-            res.send({ error: error.message })
+            res.status(404).send({ error: error.message })
         }
     }
 }

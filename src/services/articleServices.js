@@ -1,8 +1,9 @@
 import Article from "../models/article"
-
 export class ArticleServices {
     static async createArticle(data) {
-        return await data.save()
+        const article = await Article(data)
+        article.save()
+        return article
     }
     static async getAllArticles() {
         const articles = await Article.find()
@@ -20,8 +21,8 @@ export class ArticleServices {
         if (info.content) {
             article.content = info.content
         }
-        if (info.photo) {
-            article.photo = info.photo
+        if (info.image) {
+            article.image = info.image
         }
         if (info.likes) {
             article.likes = info.likes
