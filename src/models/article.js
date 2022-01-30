@@ -5,5 +5,6 @@ const articleSchema = mongoose.Schema({
     content: { type: String, required: true },
     likes: { type: Number, default: 0 },
 })
-const Article = mongoose.model('Article', articleSchema)
+const Article = mongoose
+    .model('Article', articleSchema)
 export default Article

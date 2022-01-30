@@ -7,5 +7,6 @@ const userSchema = mongoose.Schema({
     password: String,
     created_on: { type: Date, default: Date.now }
 })
-const User = mongoose.model('User', userSchema)
+const User = mongoose
+    .model('User', userSchema)
 export default User

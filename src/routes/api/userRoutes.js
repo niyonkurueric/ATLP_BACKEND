@@ -8,6 +8,7 @@ const route = express.Router()
 // })
 
 route.post('/', (req, res, next) => {
-    new UserController().createUser(req, res, next)
+    new UserController()
+        .createUser(req, res, next)
 })
 export default route
