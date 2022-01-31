@@ -5,6 +5,7 @@ export class queryService {
         return await message.save()
     }
     static async getAllArticles() {
+
         const queryall = await query.find()
         return queryall
     }
