@@ -10,16 +10,15 @@ export class QueryController {
                 email: req.body.email,
             })
             const article = await queryService.createquery(message)
-            res.send(message).send("create well")
-
+            res.status(200).json({ status: 200, message: "Created.....  " });
         } catch (error) {
-            res.status(404)
-            res.send({ error: error.message })
+            res.status(404).send({ error: error.message })
         }
     }
-    async getallquery(req, res, next) {
+    async getAllArticles(req, res, next) {
         try {
-            const allquery = await queryService.getallquery().send(allquery)
+            const allquery = await queryService.getAllArticles()
+            res.send(allquery)
         } catch (error) {
             res.status(404).send({ error: error.message })
         }

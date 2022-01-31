@@ -19,7 +19,7 @@ export class ArticleController {
                 }
                 console.log(data)
                 const article = await ArticleServices.createArticle(data)
-                res.status(200).json({ status: 200, message: "Article created successfully.....", data: article })
+                res.status(201).json({ status: 201, message: "Article created successfully", data: article })
             });
         } catch (error) {
             console.log(error)

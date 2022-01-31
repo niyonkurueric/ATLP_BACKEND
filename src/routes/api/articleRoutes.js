@@ -2,6 +2,12 @@ import express from 'express'
 import { ArticleController } from '../../controllers/articleController'
 import multer from 'multer'
 
+// import { fileFilter } from '../../helpers/fileFilter.js';
+// import { authenticate } from '../../middlewares/authenticate.js';
+import { articleValidation } from '../../validation/articleValidation/article.validation';
+
+
+
 const route = express.Router()
 const storage = multer.diskStorage({});
 const fileFilter = (req, file, cb) => {
@@ -19,7 +25,7 @@ route.get('/', (req, res, next) => {
         .getAllArticles(req, res, next)
 })
 
-route.post('/', uploads.single('image'), (req, res, next) => {
+route.post('/', uploads.single('image'), articleValidation, (req, res, next) => {
     new ArticleController()
         .createArticle(req, res, next)
 })
