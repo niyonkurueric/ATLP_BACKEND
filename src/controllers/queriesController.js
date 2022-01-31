@@ -10,12 +10,10 @@ export class QueryController {
                 email: req.body.email,
             })
             const article = await queryService.createquery(message)
-            res.send(message)
-            res.send("create well")
+            res.send(message).send("create well")
 
         } catch (error) {
-            res.status(404)
-            res.send({ error: error.message })
+            res.status(404).send({ error: error.message })
         }
     }
     async getallquery(req, res, next) {
@@ -23,8 +21,7 @@ export class QueryController {
             const allquery = await queryService.getallquery()
             res.send(allquery)
         } catch (error) {
-            res.status(404)
-            res.send({ error: error.message })
+            res.status(404).send({ error: error.message })
         }
     }
 
@@ -34,8 +31,7 @@ export class QueryController {
             const queriesone = await queryService.getArticle(req.params.id)
             res.send(queriesone)
         } catch (error) {
-            res.status(404)
-            res.send({ error: error.message })
+            res.status(404).send({ error: error.message })
         }
     }
 
@@ -56,8 +52,7 @@ export class QueryController {
             const Queriesp = await queryService.updateQueries(req.params.id, info);
             res.send(Queriesp);
         } catch (error) {
-            res.status(404)
-            res.send({ error: error.message })
+            res.status(404).send({ error: error.message })
         }
     }
 
@@ -66,9 +61,7 @@ export class QueryController {
             await queryService.deletequeries(req.params.id)
             res.send("delete well")
         } catch (error) {
-            res.status(404);
-            res.send({ error: error.message })
+            res.status(404).send({ error: error.message })
         }
     }
-
 }
