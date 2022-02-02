@@ -1,14 +1,15 @@
 import express from 'express'
-import { UserController } from '../../controllers/userController'
+import multer from 'multer';
+import { UserControllers } from '../../controllers/userController.js';
+import { fileFilter } from '../../helpers/fileFilter.js';
+import { userValidation } from '../../validations/userValidation/user.validation.js';
 
 const route = express.Router()
+const storage = multer.diskStorage({});
 
-// route.get('/', (req, res, next) => {
-//     new UserController().getAllUsers(req, res, next)
-// })
+const uploads = multer({ storage, fileFilter });
+const userControllers = new UserControllers()
+route.post('/register', uploads.single('picture'), userValidation, userControllers.register)
+route.post('/login', uploads.single(''), userValidation, userControllers.login)
 
-route.post('/', (req, res, next) => {
-    new UserController()
-        .createUser(req, res, next)
-})
 export default route

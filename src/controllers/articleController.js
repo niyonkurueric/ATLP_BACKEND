@@ -19,7 +19,7 @@ export class ArticleController {
                 }
                 console.log(data)
                 const article = await ArticleServices.createArticle(data)
-                res.status(200).json({ status: 200, message: "Article created successfully.....", data: article })
+                res.status(201).json({ status: 201, message: "Article created successfully", data: article })
             });
         } catch (error) {
             console.log(error)
@@ -36,29 +36,38 @@ export class ArticleController {
     async getArticle(req, res, next) {
         try {
             const article = await ArticleServices.getArticle(req.params.id)
-            res.send(article)
+            if (article) {
+                res.send(article)
+
+            } else {
+                res.send("Articles was deleted");
+            }
         } catch (error) {
             res.status(404).send({ error: error.message })
         }
     }
     async updateArticle(req, res, next) {
         try {
-            const info = {}
-            if (req.body.title) {
-                info['title'] = req.body.title;
-            }
-            if (req.body.content) {
-                info['content'] = req.body.content;
+            cloudinary.v2.uploader.upload(req.file.path, async function(err, image) {
+                if (err) { console.warn(err); }
+                req.body.image = image.url
+                const info = {}
+                if (req.body.title) {
+                    info['title'] = req.body.title;
+                }
+                if (req.body.content) {
+                    info['content'] = req.body.content;
 
-            }
-            if (req.body.image) {
-                info['image'] = req.body.image;
-            }
-            if (req.body.likes) {
-                info['likes'] = req.body.likes
-            }
-            const article = await ArticleServices.updateArticle(req.params.id, info);
-            res.send(article);
+                }
+                if (req.body.image) {
+                    info['image'] = req.body.image;
+                }
+                if (req.body.likes) {
+                    info['likes'] = req.body.likes
+                }
+                const article = await ArticleServices.updateArticle(req.params.id, info);
+                res.send(article);
+            });
         } catch (error) {
             res.status(404).send({ error: error.message })
         }
