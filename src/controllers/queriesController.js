@@ -10,6 +10,7 @@ export class QueryController {
                 email: req.body.email,
             })
             const article = await queryService.createquery(message)
+
             res.status(200).json({ status: 200, message: "Created.....  " });
         } catch (error) {
             res.status(404).send({ error: error.message })
@@ -19,6 +20,7 @@ export class QueryController {
         try {
             const allquery = await queryService.getAllArticles()
             res.send(allquery)
+
         } catch (error) {
             res.status(404).send({ error: error.message })
         }

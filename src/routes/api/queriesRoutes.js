@@ -8,6 +8,7 @@ const route = express.Router()
 route.get('/', (req, res, next) => {
     new QueryController()
         .getAllArticles(req, res, next)
+
 })
 
 route.post('/', (req, res, next) => {
