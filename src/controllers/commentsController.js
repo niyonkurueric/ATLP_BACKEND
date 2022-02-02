@@ -1,5 +1,6 @@
 import { createComment, getArticleComments } from "../services/commentServices.js"
 
+
 export class CommentControllers {
     async addComment(req, res, next) {
         try {
@@ -9,17 +10,17 @@ export class CommentControllers {
                 comment: req.body.comment,
             }
             const comment = await createComment(data)
-            res.status(201).json(comment)
+            res.status(201).json({ message: "the comment is added", comment: comment })
         } catch (error) {
-            console.log(error)
+            res.status(404).send({ error: error.message })
         }
     }
     async getComments(req, res, next) {
         try {
             const comments = await getArticleComments(req.params.articleid)
-            res.status(200).json(comments)
+            res.status(200).json({ message: "comments retrieved successfully", comments: comments })
         } catch (error) {
-            console.log(error)
+            res.status(404).send({ error: error.message })
         }
     }
 }
