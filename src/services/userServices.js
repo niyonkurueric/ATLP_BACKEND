@@ -1,12 +1,16 @@
-import User from "../models/user";
+import User from "../models/user.js"
 
-export class UserServices {
-    static createUser(data) {
-        data.save()
+export const userExist = async(email) => {
+    const user = await User.findOne({ email: email })
+    if (user) {
+        return user
+    } else {
+        return false
     }
+}
 
-    static async getUser() {
-        const articles = await User.find()
-        return articles
-    }
+export const createUser = async(user) => {
+    const userCreated = await User(user)
+    userCreated.save()
+    return userCreated
 }
