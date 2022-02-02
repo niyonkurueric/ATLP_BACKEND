@@ -35,7 +35,7 @@ route.get('/:id', (req, res, next) => {
         .getArticle(req, res, next)
 })
 
-route.patch('/:id', authenticate, articleValidation, (req, res, next) => {
+route.patch('/:id', uploads.single('image'), authenticate, articleValidation, (req, res, next) => {
     new ArticleController()
         .updateArticle(req, res, next)
 })
