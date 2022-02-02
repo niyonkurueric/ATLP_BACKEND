@@ -8,7 +8,6 @@ export const authenticate = async(req, res, next) => {
         next();
     } catch (error) {
         return res.status(401).json({
-            status: 401,
             error: "Please login it seems you are not logged in"
         })
     }
