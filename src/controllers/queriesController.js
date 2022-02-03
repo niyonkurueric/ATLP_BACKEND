@@ -10,6 +10,10 @@ export class QueryController {
                 email: req.body.email,
             })
             const article = await queryService.createquery(message)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3088f4b15e477689f11dcb5b0364a567ae621128
             res.status(200).json({ status: 200, message: "Created.....  " });
         } catch (error) {
             res.status(404).send({ error: error.message })
@@ -19,6 +23,10 @@ export class QueryController {
         try {
             const allquery = await queryService.getAllArticles()
             res.send(allquery)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3088f4b15e477689f11dcb5b0364a567ae621128
         } catch (error) {
             res.status(404).send({ error: error.message })
         }
