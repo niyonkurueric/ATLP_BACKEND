@@ -4,7 +4,13 @@ export class queryService {
     static async createquery(message) {
         return await message.save()
     }
+<<<<<<< HEAD
     static async getAllArticles() {
+=======
+
+    static async getAllArticles() {
+
+>>>>>>> 3088f4b15e477689f11dcb5b0364a567ae621128
         const queryall = await query.find()
         return queryall
     }

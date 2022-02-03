@@ -11,6 +11,10 @@ export class QueryController {
             })
             const article = await queryService.createquery(message)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3088f4b15e477689f11dcb5b0364a567ae621128
 =======
 
 >>>>>>> 3088f4b15e477689f11dcb5b0364a567ae621128
@@ -24,6 +28,10 @@ export class QueryController {
             const allquery = await queryService.getAllArticles()
             res.send(allquery)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3088f4b15e477689f11dcb5b0364a567ae621128
 =======
 
 >>>>>>> 3088f4b15e477689f11dcb5b0364a567ae621128
