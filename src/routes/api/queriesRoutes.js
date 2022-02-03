@@ -1,11 +1,14 @@
 import express from 'express'
 import { QueryController } from '../../controllers/queriesController'
+import { authenticate } from '../../middlewares/authenticate.js';
+import { articleValidation } from '../../validations/articleValidation/article.validation';
+
 
 const route = express.Router()
 
 
 
-route.get('/', (req, res, next) => {
+route.get('/', authenticate, articleValidation, (req, res, next) => {
     new QueryController()
         .getAllArticles(req, res, next)
 })
