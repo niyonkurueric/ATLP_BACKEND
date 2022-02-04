@@ -2,6 +2,7 @@ import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
 import app from '../src/app.js'
 import 'dotenv/config';
+import Article from '../src/models/article.js';
 chai.use(chaiHttp)
 describe("ARTICLE END-POINT TESTING", () => {
     it("Should retrieve the articles", (done) => {
@@ -39,7 +40,14 @@ describe("ARTICLE END-POINT TESTING", () => {
             })
     })
 
-
+    it("Should update one  articles", (done) => {
+        chai.request(app).patch("/api/v1/aritcles/61f2d10027ad37dbb19f9436")
+            .send()
+            .end((err, res) => {
+                expect(res).to.have.status([200])
+                done()
+            })
+    })
     it("Should not update one articles", (done) => {
         chai.request(app).patch("/api/v1/aritcle/id")
             .send()
