@@ -13,6 +13,7 @@ describe("ARTICLE END-POINT TESTING", () => {
                 done()
             })
     })
+
     it("Should not retrieve the articles", (done) => {
         chai.request(app).get("/api/v1/aritcle/")
             .send()
