@@ -4,6 +4,9 @@ import app from '../src/app.js'
 import 'dotenv/config';
 import { userData, validUser } from './dummyData.js';
 import User from "../src/models/user.js"
+
+import { generateToken } from "../src/helpers/jwtFunctions.js"
+
 chai.use(chaiHttp)
 describe("QUERY END-POINT TESTING", () => {
     before(async() => {
@@ -24,7 +27,7 @@ describe("QUERY END-POINT TESTING", () => {
             .end((err, res) => {
                 token = res.body.accessToken;
                 expect(res.body).to.have.property("message")
-
+                expect(res.body).to.have.property("accessToken")
                 done()
             })
     })
