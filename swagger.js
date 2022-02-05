@@ -4,8 +4,8 @@ export const swaggerOptions = {
     definition: {
         openapi: "3.0.0",
         info: {
-            title: "ATLP Niyonkuru",
-            description: "This is a backend APIs for my Capstone project",
+            title: "ATLP BRAND PROJECT",
+            description: "This is a backend APIs for my  project",
             version: "1.0.0",
             contact: {
                 name: "Niyonkuru Eric",
@@ -13,9 +13,9 @@ export const swaggerOptions = {
             },
         },
         servers: [{
-            url: process.env.DEVELOPMENT_DB,
+            url: "http://localhost:3000",
             name: "Local server",
         }, ],
     },
-    apis: ["./routes/api/*.js"],
+    apis: ["./src/routes/api/*.js"],
 };

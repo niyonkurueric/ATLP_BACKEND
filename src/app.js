@@ -2,13 +2,15 @@ import express from "express"
 import mongoose from "mongoose"
 import routes from "./routes"
 import 'dotenv/config'
+import cors from "cors"
 
 import swaggerUi from "swagger-ui-express";
-import swaggerJsDoc from "swagger-jsdoc";
-import { swaggerOptions } from "./swagger.js";
+import swaggerOptions from "./swagger";
+
 
 const app = express()
 
+app.use(cors())
 const port = process.env.PORT || 3000
 const mode = process.env.NODE_ENV || 'development'
     // const server = async() => {
@@ -23,8 +25,7 @@ try {
         mongoose.connect("process.env.PRODUCTION_DB", { useNewUrlParser: true })
     }
     app.use(express.json())
-    const swaggerSpec = swaggerJsDoc(swaggerOptions);
-    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
     app.use("/api/v1/", routes)
     app.listen(port, () => {
         console.log(`The server is running on port ${port}`)

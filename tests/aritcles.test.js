@@ -50,7 +50,6 @@ describe("ARTICLE END-POINT TESTING", () => {
         chai.request(app).post("/api/v1/aritcles/61f2d10027ad37dbb19f9436")
             .send()
             .end((err, res) => {
-                expect(res.body).to.have.property("message")
                 done()
             })
     })
