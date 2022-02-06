@@ -1,19 +1,19 @@
 import dotenv from 'dotenv';
 import articles from './articles.swagger';
 import users from './users.swagger';
+import queries from './queries.swagger';
+import comments from './comment.swagger';
 
 dotenv.config();
 
-const host = "localhost:3000";
+const host = process.env.BASE_URL;
 
-
-// process.env.NODE_ENV === 'production' ?
-// process.env.BASE_URL.split('https://')[1] :
-// process.env.BASE_URL.split('http://')[1];
 
 const paths = {
     ...users,
-    ...articles
+    ...articles,
+    ...queries,
+    ...comments
 };
 
 const config = {

@@ -22,7 +22,7 @@ try {
     } else if (mode === "test") {
         mongoose.connect(process.env.TEST_DB, { useNewUrlParser: true })
     } else if (mode === "production") {
-        mongoose.connect("process.env.PRODUCTION_DB", { useNewUrlParser: true })
+        mongoose.connect(process.env.PRODUCTION_DB, { useNewUrlParser: true })
     }
     app.use(express.json())
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));

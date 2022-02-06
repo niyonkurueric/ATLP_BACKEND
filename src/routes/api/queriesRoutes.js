@@ -103,7 +103,7 @@ route.post('/', (req, res, next) => {
  */
 
 
-route.get('/:id', authenticate, queryValidation, (req, res, next) => {
+route.get('/:id', authenticate, (req, res, next) => {
     new QueryController()
         .getArticle(req, res, next)
 })

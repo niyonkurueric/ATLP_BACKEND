@@ -70,11 +70,6 @@ describe("ARTICLE END-POINT TESTING", () => {
                     done()
                 })
         })
-
-
-
-
-
     })
 
 })

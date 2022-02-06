@@ -10,7 +10,7 @@ export class CommentControllers {
                 comment: req.body.comment,
             }
             const comment = await createComment(data)
-            res.status(201).json({ message: "the comment is added", comment: comment })
+            res.status(201).json({ message: "the comment is added", data: comment })
         } catch (error) {
             res.status(404).send({ error: error.message })
         }
@@ -18,7 +18,7 @@ export class CommentControllers {
     async getComments(req, res, next) {
         try {
             const comments = await getArticleComments(req.params.articleid)
-            res.status(200).json({ message: "comments retrieved successfully", comments: comments })
+            res.status(200).json({ message: "comments retrieved successfully", data: comments })
         } catch (error) {
             res.status(404).send({ error: error.message })
         }

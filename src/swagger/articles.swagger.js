@@ -1,5 +1,6 @@
 import responses from './status'
 const articles = {
+
     '/aritcles': {
         get: {
             tags: ['Articles'],
@@ -36,7 +37,68 @@ const articles = {
             consumes: ['application/json'],
             responses,
         }
+
+    },
+    '/aritcles/{Id}': {
+        get: {
+            summary: 'Get one Articles',
+            tags: ['Articles'],
+            parameters: [{ in: 'path',
+                name: 'Id',
+                required: true,
+                schema: {
+                    example: "put ID",
+                },
+            }, ],
+            consumes: ['application/json'],
+            responses,
+        },
+        patch: {
+            summary: 'Update Articles',
+            tags: ['Articles'],
+            security: [{
+                JWT: [],
+            }, ],
+            parameters: [{ in: 'path',
+                    name: 'Id',
+                    required: true,
+                },
+                { in: 'formData',
+                    name: 'image',
+                    type: "file",
+
+                },
+                { in: 'formData',
+                    name: 'title',
+                    type: "string",
+                },
+                { in: 'formData',
+                    name: 'content',
+                    type: "string",
+                },
+
+            ],
+            consumes: ['application/json'],
+            responses,
+        },
+        delete: {
+            summary: 'Delete Articles',
+            tags: ['Articles'],
+            parameters: [{ in: 'path',
+                name: 'Id',
+                required: true,
+                schema: {
+                    example: "put ID",
+                },
+            }, ],
+            security: [{
+                JWT: [],
+            }, ],
+            consumes: ['application/json'],
+            responses,
+        },
+
     }
-};
+}
 
 export default articles;
