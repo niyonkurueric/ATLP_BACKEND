@@ -7,7 +7,12 @@
         "build": "babel src -d dist",
         "start": "npm run build && better-npm-run prod",
         "dev": "better-npm-run dev",
-        "test": "better-npm-run test"
+        "test": "better-npm-run test",
+        "coverage": "nyc  npm run test"
+    },
+    "nyc": {
+        "include": "src",
+        "exclude": "test"
     },
     "betterScripts": {
         "dev": {
@@ -24,6 +29,7 @@
                 "PORT": 5000
             }
         },
+
         "prod": {
             "command": "node ./dist/app.js",
             "env": {

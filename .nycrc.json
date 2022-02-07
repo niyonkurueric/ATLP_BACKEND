@@ -1,0 +1,9 @@
+{
+    "include": "src",
+    "exclude": "test",
+    "check-coverage": true,
+    "branches": 20,
+    "lines": 60,
+    "functions": 47,
+    "statement": 30
+}
