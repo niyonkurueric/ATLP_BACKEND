@@ -3,9 +3,15 @@ import chaiHttp from 'chai-http'
 import app from '../src/app.js'
 import 'dotenv/config';
 
+
+import { generateToken } from "../src/helpers/jwtFunctions.js"
+import { createEmail } from './emailgenerator.js';
+
 use(chaiHttp)
 
 describe("USER END POINT-TEST", () => {
+    const email = createEmail(6) + "@domain.com";
+
     it("should accept user to login", (done) => {
         request(app)
             .post("/api/v1/user/login")
@@ -18,4 +24,14 @@ describe("USER END POINT-TEST", () => {
                 done();
             });
     });
+    it("It should register the user", (done) => {
+        request(app)
+            .post("/api/v1/user/register")
+            .set('Content-Type', 'multipart/form-data')
+            .field({ username: 'postt1', email: email, password: 'Password12@' })
+            .end((err, res) => {
+                expect(res).to.have.status([201])
+                done()
+            })
+    })
 });

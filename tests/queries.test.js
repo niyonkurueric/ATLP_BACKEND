@@ -16,21 +16,12 @@ describe("QUERY END-POINT TESTING", () => {
         chai.request(app).post("/api/v1/user/register")
             .send(userData)
             .end((err, res) => {
+                console.log("user\n\n\n", res.body)
                 expect(res).to.have.status([201])
                 done()
             })
     })
     let token = ""
-    it("It should loggin the user", (done) => {
-        chai.request(app).post("/api/v1/user/login")
-            .send(validUser)
-            .end((err, res) => {
-                token = res.body.accessToken;
-                expect(res.body).to.have.property("message")
-                expect(res.body).to.have.property("accessToken")
-                done()
-            })
-    })
     it("While logged in Should retrieve the queries", (done) => {
         chai.request(app).get("/api/v1/queries")
             .set('authorization', `Bearer ${token}`)

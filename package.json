@@ -10,10 +10,6 @@
         "test": "better-npm-run test",
         "coverage": "nyc  npm run test"
     },
-    "nyc": {
-        "include": "src",
-        "exclude": "test"
-    },
     "betterScripts": {
         "dev": {
             "command": "nodemon --exec babel-node ./src/app.js",
