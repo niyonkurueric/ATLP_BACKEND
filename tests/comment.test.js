@@ -2,31 +2,36 @@ import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
 import app from '../src/app.js'
 import 'dotenv/config';
-import Article from '../src/models/article.js';
-import { userData, validUser } from './dummyData.js';
-import { generateToken } from "../src/helpers/jwtFunctions.js"
 chai.use(chaiHttp)
 describe("COMMENT END-POINT TESTING", () => {
-    it("Should retrieve the comments", (done) => {
-        chai.request(app).get("/api/v1/comments/61f2d10027ad37dbb19f9436")
-            .send()
+    // comments 
+    it("Should created the comments", (done) => {
+        chai.request(app).post(`/api/v1/comments/6202a20a536446dff9feee52`)
+            .field({ articleId: '6202a20a536446dff9feee52', name: 'postt1request', comment: 'common news' })
             .end((err, res) => {
-                expect(res).to.have.property("status")
+                expect(res).to.have.status([200])
                 done()
             })
-
     })
-
-    it("Should not retrieve the comments", (done) => {
-        chai.request(app).get("/api/v1/comments/")
-            .send()
+    it("shoud not create comments", (done) => {
+        chai.request(app).post(`api/v1/comment`)
+            .field({ id: '6202a20a536446dff9feee52', name: 'postt1request', comment: 'common news' })
             .end((err, res) => {
                 expect(res).to.have.status([404])
                 done()
             })
     })
 
+
     it("Should retrieve one comment", (done) => {
+        chai.request(app).get("/api/v1/comments/6202a20a536446dff9feee52")
+            .send()
+            .end((err, res) => {
+                expect(res).to.have.status([200])
+                done()
+            })
+    })
+    it("Should not retrieve one comment", (done) => {
         chai.request(app).get("/api/v1/comments")
             .send()
             .end((err, res) => {
@@ -34,32 +39,5 @@ describe("COMMENT END-POINT TESTING", () => {
                 done()
             })
     })
-    it("Should not retrieve one comment", (done) => {
-        chai.request(app).get("/api/v1/comments/id")
-            .send()
-            .end((err, res) => {
-
-                done()
-            })
-    })
-
-
-    it("Should deleted one comment", (done) => {
-        chai.request(app).delete("/api/v1/comments/61f2d10027ad37dbb19f9436")
-            .send()
-            .end((err, res) => {
-                expect(res).to.have.status([404])
-                done()
-            })
-    })
-    it("Should not delete one comment", (done) => {
-        chai.request(app).delete("/api/v1/comments/id")
-            .send()
-            .end((err, res) => {
-
-                done()
-            })
-    })
-
 
 })
