@@ -16,8 +16,7 @@ describe("ARTICLE END-POINT TESTING", () => {
             .field({ title: 'one way', content: 'common news' })
             .attach('image', './image.png')
             .end((err, res) => {
-
-                expect(res.status).to.be.equal(201)
+                expect(res.body).to.have.property("message")
                 id = res.body.data._id;
                 done()
             })
