@@ -32,10 +32,6 @@ describe("ARTICLE END-POINT TESTING", () => {
                 done()
             })
     })
-
-
-
-
     it("Should retrieve the articles", (done) => {
         chai.request(app).get("/api/v1/aritcles")
             .send()
@@ -44,9 +40,6 @@ describe("ARTICLE END-POINT TESTING", () => {
                 done()
             })
     })
-
-
-
     it("Should retrieve one  articles", (done) => {
         chai.request(app).get(`/api/v1/aritcles/${id}`)
             .send()
