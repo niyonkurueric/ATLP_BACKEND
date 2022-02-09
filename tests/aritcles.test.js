@@ -9,17 +9,15 @@ import { generateToken } from "../src/helpers/jwtFunctions.js"
 chai.use(chaiHttp)
 describe("ARTICLE END-POINT TESTING", () => {
     let id;
-    it("Should created the articles", (done) => {
-        chai.request(app).post("/api/v1/aritcles")
+    it("Should created the articles", async(done) => {
+        const res = await chai.request(app).post("/api/v1/aritcles")
             .set("Authorization", `${generateToken({ id: 1 })}`)
             .set('Content-Type', 'multipart/form-data')
             .field({ title: 'one way', content: 'common news' })
-            .attach('image', './image.png')
-            .end((err, res) => {
-                expect(res.body).to.have.property("message")
-                id = res.body.data._id;
-                done()
-            })
+            .attach('image', './image.png');
+        id = res.body.data._id;
+        expect(res.body).to.have.property("message")
+        done()
     })
     it("shoud not create :: invalid token", (done) => {
         chai.request(app).post("/api/v1/aritcles")
@@ -59,14 +57,6 @@ describe("ARTICLE END-POINT TESTING", () => {
                 })
         })
         // articles was deleted
-    it("Should retrieve one  articles", (done) => {
-        chai.request(app).get(`/api/v1/aritcles/k${id}`)
-            .send()
-            .end((err, res) => {
-                done()
-            })
-    })
-
     it("Should  update one articles", (done) => {
         chai.request(app).patch(`/api/v1/aritcles/${id}`)
             .set("Authorization", `${generateToken({ id: 1 })}`)
