@@ -13,10 +13,11 @@ describe("ARTICLE END-POINT TESTING", () => {
         chai.request(app).post("/api/v1/aritcles")
             .set("Authorization", `${generateToken({ id: 1 })}`)
             .set('Content-Type', 'multipart/form-data')
-            .field({ title: 'postt1request', content: 'common news' })
+            .field({ title: 'one way', content: 'common news' })
             .attach('image', './image.png')
             .end((err, res) => {
-                expect(res).to.have.status([201])
+
+                expect(res.status).to.be.equal(201)
                 id = res.body.data._id;
                 done()
             })
@@ -40,6 +41,7 @@ describe("ARTICLE END-POINT TESTING", () => {
                 done()
             })
     })
+
     it("Should retrieve one  articles", (done) => {
         chai.request(app).get(`/api/v1/aritcles/${id}`)
             .send()
@@ -50,13 +52,22 @@ describe("ARTICLE END-POINT TESTING", () => {
     })
 
     it("Should not retrieve one articles", (done) => {
-        chai.request(app).get("/api/v1/aritcle/id")
+            chai.request(app).get("/api/v1/aritcle/id")
+                .send()
+                .end((err, res) => {
+                    expect(res).to.have.status([404])
+                    done()
+                })
+        })
+        // articles was deleted
+    it("Should retrieve one  articles", (done) => {
+        chai.request(app).get(`/api/v1/aritcles/k${id}`)
             .send()
             .end((err, res) => {
-                expect(res).to.have.status([404])
                 done()
             })
     })
+
     it("Should  update one articles", (done) => {
         chai.request(app).patch(`/api/v1/aritcles/${id}`)
             .set("Authorization", `${generateToken({ id: 1 })}`)
@@ -81,4 +92,12 @@ describe("ARTICLE END-POINT TESTING", () => {
             })
     })
 
+    it("Should  delete one articles", (done) => {
+        chai.request(app).delete(`/api/v1/aritcles/${id}`)
+            .set("Authorization", `${generateToken({ id: 1 })}`)
+            .end((err, res) => {
+                expect(res).to.have.status([200])
+                done()
+            })
+    })
 })
