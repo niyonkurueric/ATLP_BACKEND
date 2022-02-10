@@ -9,15 +9,17 @@ import { generateToken } from "../src/helpers/jwtFunctions.js"
 chai.use(chaiHttp)
 describe("ARTICLE END-POINT TESTING", () => {
     let id;
-    it("Should created the articles", async(done) => {
-        const res = await chai.request(app).post("/api/v1/aritcles")
+    it("Should created the articles", (done) => {
+        chai.request(app).post("/api/v1/aritcles")
             .set("Authorization", `${generateToken({ id: 1 })}`)
             .set('Content-Type', 'multipart/form-data')
-            .field({ title: 'one way', content: 'common news' })
-            .attach('image', './image.png');
-        id = res.body.data._id;
-        expect(res.body).to.have.property("message")
-        done()
+            .field({ title: 'postt1request', content: 'common news' })
+            .attach('image', './image.png')
+            .end((err, res) => {
+                expect(res).to.have.status([201])
+                id = res.body.data._id;
+                done()
+            })
     })
     it("shoud not create :: invalid token", (done) => {
         chai.request(app).post("/api/v1/aritcles")
