@@ -41,7 +41,7 @@ describe("ARTICLE END-POINT TESTING", () => {
     })
 
     it("Should retrieve one  articles", (done) => {
-        chai.request(app).get(`/api/v1/aritcles/${id}`)
+        chai.request(app).get(`/api/v1/aritcles/6202a20a536446dff9feee52`)
             .send()
             .end((err, res) => {
                 expect(res).to.have.status([200])
