@@ -8,7 +8,7 @@
         "start": "npm run build && better-npm-run prod",
         "dev": "better-npm-run dev",
         "test": "better-npm-run test",
-        "coverage": "nyc  npm run test"
+        "covalls": "nyc report --reporter=text-lcov | coveralls"
     },
     "betterScripts": {
         "dev": {

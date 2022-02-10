@@ -11,7 +11,7 @@ describe("ARTICLE END-POINT TESTING", () => {
     let id;
     it("Should created the articles", (done) => {
         chai.request(app).post("/api/v1/aritcles")
-            .set("authorization", `${generateToken({ id: 1 })}`)
+            .set("Authorization", `${generateToken({ id: 1 })}`)
             .field({ title: 'postt1request', content: 'common news' })
             .attach('image', './image.png')
             .end((err, res) => {
@@ -41,7 +41,7 @@ describe("ARTICLE END-POINT TESTING", () => {
     })
 
     it("Should retrieve one  articles", (done) => {
-        chai.request(app).get(`/api/v1/aritcles/6202a20a536446dff9feee52`)
+        chai.request(app).get(`/api/v1/aritcles/${id}`)
             .send()
             .end((err, res) => {
                 expect(res).to.have.status([200])
@@ -59,8 +59,8 @@ describe("ARTICLE END-POINT TESTING", () => {
         })
         // articles was deleted
     it("Should  update one articles", (done) => {
-        chai.request(app).patch(`/api/v1/aritcles/62037b4c7d97ad8c309943a1`)
-            .set("authorization", `${generateToken({ id: 1 })}`)
+        chai.request(app).patch(`/api/v1/aritcles/${id}`)
+            .set("Authorization", `${generateToken({ id: 1 })}`)
             .set('Content-Type', 'multipart/form-data')
             .field({ title: 'postt1request', content: 'common news' })
             .attach('image', './image.png')
@@ -83,7 +83,7 @@ describe("ARTICLE END-POINT TESTING", () => {
     })
 
     it("Should  delete one articles", (done) => {
-        chai.request(app).delete(`/api/v1/aritcles/6202a20a536446dff9feee52`)
+        chai.request(app).delete(`/api/v1/aritcles/${id}`)
             .set("Authorization", `${generateToken({ id: 1 })}`)
             .end((err, res) => {
                 expect(res).to.have.status([200])

@@ -14,8 +14,8 @@ describe("COMMENT END-POINT TESTING", () => {
             })
     })
     it("shoud not create comments", (done) => {
-        chai.request(app).post(`api/v1/comment`)
-            .field({ id: '6202a20a536446dff9feee52', name: 'postt1request', comment: 'common news' })
+        chai.request(app).post(`/api/v1/comment/6202a20a536446dff9feee52`)
+            .field({ names: 'postt1request', comment: 'common news' })
             .end((err, res) => {
                 expect(res).to.have.status([404])
                 done()

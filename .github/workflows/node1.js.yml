@@ -11,6 +11,7 @@ on:
 env: 
   TEST_DB: ${{ secrets.TEST_DB }}
   JWT_SECRETE: ${{ secrets.JWT_SECRETE }}
+  CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL}}
 jobs:
   build:
 
@@ -18,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [17.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -31,4 +32,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - run: npm run coverage
+    # - run: npm run covalls
+    # - name: Coveralls
+    #   uses: coverallsapp/github-action@develop
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}
