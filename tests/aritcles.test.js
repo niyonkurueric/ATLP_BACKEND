@@ -12,15 +12,15 @@ describe("ARTICLE END-POINT TESTING", () => {
     it("Should created the articles", (done) => {
         chai.request(app).post("/api/v1/aritcles")
             .set("Authorization", `${generateToken({ id: 1 })}`)
-            .set('Content-Type', 'multipart/form-data')
+            .set('Content-Type', 'application/x-www-form-urlencoded')
             .field({ title: 'postt1request', content: 'common news' })
             .attach('image', './image.png')
             .end((err, res) => {
-                expect(res).to.have.status([201])
+                expect(res).to.have.status(201)
                 id = res.body.data._id;
                 done()
             })
-    })
+    }).timeout(50000)
     it("shoud not create :: invalid token", (done) => {
         chai.request(app).post("/api/v1/aritcles")
             .set("Authorization", `b${generateToken({ id: 1 })}`)
