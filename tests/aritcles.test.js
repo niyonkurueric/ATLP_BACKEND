@@ -59,8 +59,8 @@ describe("ARTICLE END-POINT TESTING", () => {
         })
         // articles was deleted
     it("Should  update one articles", (done) => {
-        chai.request(app).patch(`/api/v1/aritcles/6202a20a536446dff9feee52`)
-            .set("Authorization", `${generateToken({ id: 1 })}`)
+        chai.request(app).patch(`/api/v1/aritcles/62037b4c7d97ad8c309943a1`)
+            .set("authorization", `${generateToken({ id: 1 })}`)
             .set('Content-Type', 'multipart/form-data')
             .field({ title: 'postt1request', content: 'common news' })
             .attach('image', './image.png')
