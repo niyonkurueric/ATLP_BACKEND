@@ -12,7 +12,6 @@ describe("ARTICLE END-POINT TESTING", () => {
     it("Should created the articles", (done) => {
         chai.request(app).post("/api/v1/aritcles")
             .set("Authorization", `${generateToken({ id: 1 })}`)
-            .set('Content-Type', 'application/x-www-form-urlencoded')
             .field({ title: 'postt1request', content: 'common news' })
             .attach('image', './image.png')
             .end((err, res) => {
