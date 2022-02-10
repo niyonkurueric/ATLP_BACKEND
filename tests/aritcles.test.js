@@ -11,7 +11,7 @@ describe("ARTICLE END-POINT TESTING", () => {
     let id;
     it("Should created the articles", (done) => {
         chai.request(app).post("/api/v1/aritcles")
-            .set("Authorization", `${generateToken({ id: 1 })}`)
+            .set("authorization", `${generateToken({ id: 1 })}`)
             .field({ title: 'postt1request', content: 'common news' })
             .attach('image', './image.png')
             .end((err, res) => {
@@ -19,7 +19,7 @@ describe("ARTICLE END-POINT TESTING", () => {
                 id = res.body.data._id;
                 done()
             })
-    }).timeout(50000)
+    })
     it("shoud not create :: invalid token", (done) => {
         chai.request(app).post("/api/v1/aritcles")
             .set("Authorization", `b${generateToken({ id: 1 })}`)
