@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 import routes from "./routes"
 import 'dotenv/config'
 import cors from "cors"
-
+import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import swaggerOptions from "./swagger";
 
@@ -25,6 +25,7 @@ try {
         mongoose.connect(process.env.PRODUCTION_DB, { useNewUrlParser: true })
     }
     app.use(express.json())
+    app.use(morgan('dev'));
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
     app.use("/api/v1/", routes)
     app.listen(port, () => {
