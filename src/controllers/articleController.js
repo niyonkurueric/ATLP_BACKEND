@@ -37,10 +37,12 @@ export class ArticleController {
         try {
             const article = await ArticleServices.getArticle(req.params.id)
             if (article) {
+                res.status(200)
                 res.send(article)
 
             } else {
                 res.send("Articles was deleted");
+
             }
         } catch (error) {
             res.status(404).send({ error: error.message })
